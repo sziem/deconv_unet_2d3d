@@ -16,4 +16,4 @@ Note that not all input image sizes are allowed (depending on the convolution mo
 
 The network is implemented in another separate object.  The number of dimensions od conv_size and pool_size must match that of the image.  Only unet is supported right now, although there is a plan to make the network class more general.
 
-Existing models can be loaded in the form of tf-checkpoints.
+Pretrained models can be loaded in the form of tf-checkpoints.
