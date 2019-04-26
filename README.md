@@ -15,3 +15,5 @@ Data is loaded using a dataset handler object.  This basically a tf-data Dataset
 Note that not all input image sizes are allowed (depending on the convolution mode "valid" or "same").  Especially for "valid" mode, input images must have a minimum number of pixels in each direction.  That number grows exponentially with network size.  See the ndnet-presentation for examples of what may go wrong.
 
 The network is implemented in another separate object.  The number of dimensions od conv_size and pool_size must match that of the image.  Only unet is supported right now, although there is a plan to make the network class more general.
+
+Existing models can be loaded in the form of tf-checkpoints.
