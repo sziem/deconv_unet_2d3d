@@ -1,0 +1,76 @@
+# scripts for runs cluster and titanx
+run_gpu0.py
+run_gpu1.py
+run_titanx.py
+run_ukj.py
+
+# datasets
+testdata/dataset_specs.json
+
+# logs and ckpts
+logs
+ckpts
+logs_old
+ckpts_old
+
+# Potentially big files
+*.tiff
+*.tif
+*.zip
+*.h5
+*.hdf5
+*.npy
+*.mat
+!testdata/*/*.mat
+
+# numpy-temporary files
+*.pyc
+__pycache__/*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
