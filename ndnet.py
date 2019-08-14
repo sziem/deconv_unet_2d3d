@@ -29,7 +29,15 @@ import training_utils
 from training_utils import experimental_model_params
 from decorators import deprecated
 
+# for tensorflow 1.14 use this to avoid some warnings:
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 #from tf_toolbox.tf_toolbox import _ftconvolve  # -> needed for unsupervised
+
+# IMPORTANT:
+# if you get an error with mkl while running the test on cpu, 
+# switch to the eigen builds of tensorflow
 
 #IDEAS:
 ## use explicit graph 

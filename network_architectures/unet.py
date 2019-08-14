@@ -8,6 +8,10 @@ else:
     from . import utils
 from warnings import warn
 
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 ## contains unet model object and methods for determination of shapes in the net
 
 ## BUILDING UNET

@@ -16,6 +16,10 @@ from warnings import warn
 import tensorflow as tf
 from numpy import float32 as np_float32
 
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 # I recommend using a handler based on BaseListDatasetHandler (!)
 
 # TODO: currently it will repeat the exact same sequence when loading from 

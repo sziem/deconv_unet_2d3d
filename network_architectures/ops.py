@@ -5,6 +5,10 @@ from warnings import warn
 # own code
 from decorators import deprecated
 
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 """
 This module provides conv-layers, pool-layers, upsampling-layers.
 Conv Layers contain convolution, activation, and possibly dropout or batch_norm
