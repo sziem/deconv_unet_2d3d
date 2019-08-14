@@ -240,6 +240,14 @@ class NDNet(object):
             pool_size=(2,2,2)
             input_output_skip=False
             nonlinearity=tf.nn.relu # must be function of a tensor or None
+        elif arch == "unetv3_small":
+            network_depth=2
+            initial_channel_growth=2
+            channel_growth=2
+            conv_size=(3,3,3)
+            pool_size=(2,2,2)
+            input_output_skip=False
+            nonlinearity=tf.nn.relu # must be function of a tensor or None
         elif arch in experimental_model_params.keys():
             d = experimental_model_params[arch]
             network_depth = d["network_depth"]
@@ -252,8 +260,8 @@ class NDNet(object):
         else:
             raise ValueError(
                     "Unsupported arch '" + arch + "'. " + 
-                    "Currently the model 'unetv3' is officially " +
-                    "supported.  Experimental models are " + 
+                    "Currently the models 'unetv3' and 'unetv3_small' are " +
+                    "officially supported.  Experimental models are " + 
                     str(list(experimental_model_params.keys())) + ".")
         self.model = na.unet.Unet_v3(
                 padding=padding, 
@@ -2032,7 +2040,10 @@ def main():
     ##### TEST TRAINING
     # example: train for 1 epoch, then run_on_image
     
-    # make sure you have enough GPU-memory.  This requires about 10 GB for
+    # UPDATE: using small model for quick testing on my laptop with cpu only 
+    # (memory <8GB, time < 1 min)
+    
+    # make sure you have enough GPU-memory.  unet_v3 requires about 10 GB for
     # 400x100x100x1 image input
     # running it takes about 10 minutes on my sytem (TitanX Maxwell)
     # will create a folder "models" to store ckpts and logs
@@ -2071,7 +2082,7 @@ def main():
         with tf.Session() as sess:
             deconv_net = NDNet(
                     sess=sess, 
-                    arch="unetv3", 
+                    arch="unetv3_small",
                     padding="valid",
                     force_pos=False,
                     normalize_input=False,
@@ -2117,7 +2128,7 @@ def main():
     # these ids result from the above example call to train
     # read the printout from start of training to know it
     print("\ntesting run_on_image")
-    model_id = "unetv3_valid_fp0_pp0_bn00_chlast"
+    model_id = "unetv3_small_valid_fp0_pp0_bn00_chlast"
     run_id = ("seed1_" +
               "bs1_do0.0_" + 
               "loss=l2loss0_weightreg=0.001l2_loss_datareg=1e-08None_" +
@@ -2133,7 +2144,7 @@ def main():
         with tf.Session() as sess:
             deconv_net = NDNet(
                     sess=sess, 
-                    arch="unetv3", 
+                    arch="unetv3_small", 
                     padding="valid",
                     force_pos=False,
                     normalize_input=False,
@@ -2161,7 +2172,7 @@ def main():
     # these ids result from the above example call to train
     # read the printout from start of training to know it
     print("\ntesting 'test'-method.")
-    model_id = "unetv3_valid_fp0_pp0_bn00_chlast"
+    model_id = "unetv3_small_valid_fp0_pp0_bn00_chlast"
     run_id = ("seed1_" +
               "bs1_do0.0_" + 
               "loss=l2loss0_weightreg=0.001l2_loss_datareg=1e-08None_" +
@@ -2183,7 +2194,7 @@ def main():
         with tf.Session() as sess:
             deconv_net = NDNet(
                     sess=sess, 
-                    arch="unetv3", 
+                    arch="unetv3_small", 
                     padding="valid",
                     force_pos=False,
                     normalize_input=False,
