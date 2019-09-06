@@ -13,7 +13,7 @@ from . import dataset_utils as dutils
 import json
 import os
 from warnings import warn
-import tensorflow as tf
+#import tensorflow as tf
 from numpy import float32 as np_float32
 
 # for tensorflow 1.14 use this to avoid warnings:

@@ -4,22 +4,32 @@
 Created on Wed May 23 14:17:11 2018
 
 @author: soenke
-
-adapted from 
-https://github.com/zhengyang-wang/Unet_3D/tree/master/model
-and inspired by
-https://github.com/aicodes/tf-bestpractice/blob/master/README.md
 """
 
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
 import os
-import json
+#import json
 import csv
 from warnings import warn
 import datetime
 from math import ceil
 from itertools import permutations
+
+# for tensorflow 1.14 use this to avoid some warnings:
+# this is from https://github.com/abseil/abseil-py/issues/102
+# it is apparently fixed in nightly tf-builds
+try:
+    import absl.logging
+    # https://github.com/abseil/abseil-py/issues/99
+    #logging.root.removeHandler(absl.logging._absl_handler)
+    # https://github.com/abseil/abseil-py/issues/102
+    absl.logging._warn_preinit_stderr = False
+except Exception:
+    print("tf 1.14.0 will print abseil.logging warning.")
+    pass
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 # own modules
 import dataset_handlers as dh
@@ -29,9 +39,7 @@ import training_utils
 from training_utils import experimental_model_params
 from decorators import deprecated
 
-# for tensorflow 1.14 use this to avoid some warnings:
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+
 
 #from tf_toolbox.tf_toolbox import _ftconvolve  # -> needed for unsupervised
 

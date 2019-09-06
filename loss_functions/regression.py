@@ -5,8 +5,7 @@ Created on Fri Jun  8 23:11:10 2018
 
 @author: Soenke
 """
-import tensorflow as tf
-
+#import tensorflow as tf
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
