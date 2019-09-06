@@ -16,9 +16,13 @@ Created on Fri Jun 22 11:34:45 2018
 # such that first dim can be None
 # TODO: enable working on tf.shape-objects or tuples instead of lists
 
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 from warnings import warn
+
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+#tf.disable_v2_behavior()
 
 # %% general stuff  -->  move to tf_toolbox
 def crop(t, new_shape):

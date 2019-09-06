@@ -1,4 +1,4 @@
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 from warnings import warn
 
@@ -7,7 +7,7 @@ from decorators import deprecated
 
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+#tf.disable_v2_behavior()
 
 """
 This module provides conv-layers, pool-layers, upsampling-layers.

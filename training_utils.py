@@ -8,7 +8,7 @@ Created on Fri Nov 23 13:58:12 2018
 #import tensorflow as tf
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+#tf.disable_v2_behavior()
 
 def print_array_info(arr, name="array", minmax=True):
     """prints shape and dtype of numpy array"""

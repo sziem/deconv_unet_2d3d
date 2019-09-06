@@ -29,7 +29,7 @@ except Exception:
     print("tf 1.14.0 will print abseil.logging warning.")
     pass
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+#tf.disable_v2_behavior()
 
 # own modules
 import dataset_handlers as dh

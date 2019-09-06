@@ -18,7 +18,7 @@ from numpy import float32 as np_float32
 
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+#tf.disable_v2_behavior()
 
 # I recommend using a handler based on BaseListDatasetHandler (!)
 

@@ -8,7 +8,7 @@ Created on Wed Dec 12 14:25:21 2018
 #import tensorflow as tf
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+#tf.disable_v2_behavior()
 
 # TODO: is there any advantage in using sparse_softmax_cross_entropy with labellist?
 def softmax_cross_entropy(
