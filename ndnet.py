@@ -326,13 +326,21 @@ class NDNet(object):
         load training data 
         and run optimizer loop on vars to minimize loss.
         
-        Args:            
-            training_dataset_handler (dataset_handler) : dataset_handler from 
-                dataset_handlers.tf_data_dataset_handlers.  These provide a thin
-                layer around tf.data datasets.  If you have an existing tf.data
-                dataset, using BaseDatasetHandler is sufficient.  The module also
-                provides Handlers that can be initialized from numpy-arrays
-                or lists of files.
+        Models as checkpoints and logs are saved in the following folders:
+            models/model_id/dataset_id/run_id/run_number/ckpts/run_0".ckpt"
+            models/model_id/dataset_id/run_id/run_number/logs/xxx".logs"
+        
+        Args:
+            training_dataset_handler (dataset_handler) : a ndnet-compatible 
+                dataset_handler, which is really just a class based on a
+                tf.data dataset with standardized methods to manipulate them.
+                Compatible dataset handlers are those in 
+                dataset_handlers.tf_data_dataset_handlers. 
+                If you already have a way to create and initialize a 
+                tf.data dataset, you can create a ndnet-compatible dataset 
+                from it by using BaseDatasetHandler(existing_tf-dataset).
+                Otherwise, the tf_data_dataset_handlers module also provides 
+                Handlers that can be initialized from numpy-arrays or lists.
             n_epochs (int) : number of training epochs.  An epoch is completed, 
                 when the network has seen all images once.
             batch_size (int) : training batch size.
@@ -347,8 +355,8 @@ class NDNet(object):
                 This is also the default.
             learning_rate_fn (function) : learning_rate_fn must be a function 
                 taking one parameter (global_step) and return a 
-                float/tf.constant/tf.Variable. The function makes it easier to 
-                define learning rate decay. 
+                float_or_tf.constant_or_tf.Variable. Using a function makes it 
+                straightforward to use learning rate decay. 
                 Default: A constant learning rate of 1e-3:
                     learning_rate_fn = lambda training_step: 1e-3
             
