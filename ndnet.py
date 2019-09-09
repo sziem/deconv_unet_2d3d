@@ -35,11 +35,9 @@ import tensorflow.compat.v1 as tf
 import dataset_handlers as dh
 import loss_functions as lf
 import network_architectures as na
-import training_utils
-from training_utils import experimental_model_params
-from decorators import deprecated
-
-
+import tools.training_utils as training_utils
+from tools.training_utils import experimental_model_params
+import tools.decorators as decorators
 
 #from tf_toolbox.tf_toolbox import _ftconvolve  # -> needed for unsupervised
 
