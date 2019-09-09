@@ -37,18 +37,11 @@ import tools.training_utils as training_utils
 from tools.training_utils import experimental_model_params
 #import tools.decorators as decorators
 
-#from tf_toolbox.tf_toolbox import _ftconvolve  # -> needed for unsupervised
-
-# IMPORTANT:
+# NOTE:
 # if you get an error with mkl while running the test on cpu, 
 # switch to the eigen builds of tensorflow
 
 #IDEAS:
-## use explicit graph 
-# self.graph = tf.graph()
-# with tf.Graph().as_default() as g (but graph is included in sess right?)
-# --> need to learn more about tf internals
-
 ## build inference during init or using a build_network method
 # --> would probably be cleaner
 
@@ -106,6 +99,14 @@ from tools.training_utils import experimental_model_params
 
 # max number of parameters is about 10 million, but it depends
 # at which sampling they occur 
+
+## use explicit graph 
+# self.graph = tf.graph()
+# with tf.Graph().as_default() as g (but graph is included in sess right?)
+# --> need to learn more about tf internals
+
+## specify data_format differently
+# more explicit 2D/3D would be to specify ndhwc etc.
 
 # posibly docment attributes here
 class NDNet(object):
