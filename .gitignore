@@ -1,4 +1,4 @@
-# scripts for runs cluster and titanx
+# scripts for runs on cluster and titanx
 run_gpu0.py
 run_gpu1.py
 run_titanx.py
@@ -6,6 +6,9 @@ run_ukj.py
 
 # datasets
 testdata/dataset_specs.json
+
+# old files and test files
+tmp
 
 # logs and ckpts
 logs
