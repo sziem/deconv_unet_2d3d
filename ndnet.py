@@ -746,10 +746,9 @@ class NDNet(object):
         saver.save(self.sess, new_ckpt, global_step=step)
 
 
-    # TODO: pass x_format as format string (?)
     def run_on_image(self, np_x, ckpt, load_step="previous", data_format=None):
         """
-        Load model from ckpt and use on an input image np_x.
+        Load model from ckpt and apply it to an input image np_x.
         
         Args:
             np_x (np-array) : image as np-array.  
@@ -761,6 +760,7 @@ class NDNet(object):
             load_step ("previous" or int) : step that will be loaded from ckpt.
                 "previous" is converted to the last ckpt that was written
                 to the folder containing the ckpt.
+                Default: "previous"
 
         Returns:
             np_y_pred : np-array of the same number of dimensions as np_x.  
