@@ -108,6 +108,8 @@ from tools.training_utils import experimental_model_params
 ## specify data_format differently
 # more explicit 2D/3D would be to specify ndhwc etc.
 
+# TODO: better documentation for unetv3 arch string
+
 # posibly docment attributes here
 class NDNet(object):
     def __init__(
@@ -246,7 +248,6 @@ class NDNet(object):
         # TODO (EXPERIMENTAL -> TEST)
         # TODO: possibly do shape corrections before applying 
         #       custom_postprocessing_fn
-        # TODO: 
         self.custom_preprocessing_fn = custom_preprocessing_fn
         self.custom_postprocessing_fn = custom_postprocessing_fn
         
@@ -424,9 +425,6 @@ class NDNet(object):
             
         Returns:
             None.  But updates variables of model and saves ckpts.
-            
-        Raises:
-            TODO
         """
         (dataset, training, total_loss, saver, new_ckpt, writer, summary, 
          validation_dataset, val_loss_single, val_loss_ph) = self._train_init(
