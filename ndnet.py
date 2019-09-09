@@ -122,41 +122,53 @@ class NDNet(object):
         """
         NDNet provides a framework for training, running and testing Neural
         Networks for image-to-image translation (any mapping from image scale
-        to image scale including deconvolution, denoising or semantic 
+        to image scale such as deconvolution, denoising or semantic 
         segmentation).  
 
         Training and testing data consists of pairs of images (x,y), 
-        where x and y must have the same spatial shape. The number of input 
-        and output channels may vary according to net_channel_growth, which 
-        can be a fraction.
+        where x and y must have the same spatial shape. 
         
-        It supports 2d or 3d network architectures, and likewise
-        such input images.  It manages all attributes that are common to 
-        training, running and testing including:
-          - a tf-session (note: might be removed from it in the future)
-          - network architecture, pre- and postprocessing
-          - details
-        This class is designed to standardize tasks such as data loading via 
-        tf-data, run inference and calculate loss.
+        Both (2d+channels) and (3d+channels) images are supported.  The 
+        number of input and output channels can be different (e.g. color input
+        and black and white output).
+        
+        The dimensionality is determined by the network architecture.  If the
+        CNN uses 3d convolution kernels, then the input image must be 3d.  
+        EXPERIMENTAL: The number of input and output channels can be tuned 
+        using the net_channel_growth parameter.  This can be a fraction 
+        (e.g. 3 input channels and 1 output channel -> 1/3).
+        
+        This class manages and standardizes all tasks that are common to 
+        training, running and testing such as:
+          - managing tf-sessions (note: might be removed from in the future)
+          - data loading
+          - pre- and postprocessing
+          - running the network for a given architecture
+          - calculating loss
+          - saving and loading checkpoints
         
         Args:
             sess: a tf-session
                 .
             # net features
             
-            arch (str): defines network-architecture.  Currently only "unetv3" 
-                is officially supported.  There is also a number of 
-                experimental models (such as "_unetv3_2d") in training_utils.  
-                Note that the dimensionality of the network is encoded in 
-                the arch-string.
+            arch (str) : defines network-architecture.  Currently only "unetv3" 
+                and unetv3_small are officially supported.  Both are 3d models.
+                There are also a number of experimental models 
+                (such as "_unetv3_2d") in training_utils.  
+                Note that the dimensionality of the model is implicitly 
+                encoded in the network architecture.  If the model uses 3d
+                convolution kernels, then the in- and output images must be 3d.
                 Default: "unetv3" (a 3d model)
-            padding (str): padding of all convolutions.  Can be "same" or 
-                "valid".  Default: "same"
+            padding (str) : padding of all convolutions.  Can be "same" or 
+                "valid".  
+                Default: "same"
             net_channel_growth (float) : EXPERIMENTAL: change this, if you 
                 want to have a different number of in- and output channels.
                 In initial tests, it was possible to set this even to float 
                 values such as 2/3 (from 3 channel input to 2 channel output).
                 But I am actually surprised that worked, so use this with care.
+                Default: 1
             force_pos (bool) : add positivity constraint by squaring 
                 network output.  Default: False
             normalize_input (bool) : Do preprocessing using mean subtraction 
@@ -164,9 +176,11 @@ class NDNet(object):
                 Default: False
             use_batch_renorm (bool) : Add batch normalization layers and 
                 use batch renormalization scheme as suggested in 
-                arXiv:1702.03275v2.  Default: False
+                arXiv:1702.03275v2.  
+                Default: False
             use_batch_norm (bool) : Add batch normalization layers and perform
-                standard batch normalization.  Default: False
+                standard batch normalization.  
+                Default: False
             
             # details
             last_layer_batch_norm (None or bool) : perform batch_nom also in 
@@ -180,22 +194,22 @@ class NDNet(object):
                 single image from the dataset.  It must have one argument 
                 (the input tensor) and return one output tensor
                 Default: None
-            dataset_means (None or float) : used for preprocessing. 
+            dataset_means (None or float) : can be used for preprocessing. 
                 Default: None
-            dataset_stds (None or float) : used for preprocessing.
+            dataset_stds (None or float) : can be used for preprocessing.
                 Default: None
 
             data_format (str) : data format of arrays in tf-graph.  Used by
                 tf.layers module.  Can be "channels_last" or "channels_first"
-                (TODO: more explicit 2D/3D would be to specify ndhwc etc.)
-            comment (None or str) : will be added to model_id
+            comment (None or str) : will be added to the model_id, which is
+                used to identify checkpoints
                 Default: None
                 
         Note:
             Preprocessing is applied in the order:: 
-                force_pos -> custom_preprocessing -> normalize_input
+                force_pos_op -> custom_preprocessing -> normalize_input
             Postprocessing undoes this in the order::
-                undo_normalization -> custom_postprocessing -> force_pos
+                undo_normalization -> custom_postprocessing -> force_pos_op
         """
         # Note:
         # The network operates on minibatches of data that have shape 
