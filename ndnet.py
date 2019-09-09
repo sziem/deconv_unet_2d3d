@@ -6,6 +6,15 @@ Created on Wed May 23 14:17:11 2018
 @author: soenke
 """
 
+# this is from https://github.com/abseil/abseil-py/issues/102
+# it is apparently fixed in nightly tf-builds
+try:
+    import absl.logging
+    absl.logging._warn_preinit_stderr = False
+except Exception:
+    print("tf 1.14.0 will print abseil.logging warning.")
+    pass
+
 import numpy as np
 #import tensorflow as tf
 import os
@@ -17,17 +26,6 @@ from math import ceil
 from itertools import permutations
 
 # for tensorflow 1.14 use this to avoid some warnings:
-# this is from https://github.com/abseil/abseil-py/issues/102
-# it is apparently fixed in nightly tf-builds
-try:
-    import absl.logging
-    # https://github.com/abseil/abseil-py/issues/99
-    #logging.root.removeHandler(absl.logging._absl_handler)
-    # https://github.com/abseil/abseil-py/issues/102
-    absl.logging._warn_preinit_stderr = False
-except Exception:
-    print("tf 1.14.0 will print abseil.logging warning.")
-    pass
 import tensorflow.compat.v1 as tf
 #tf.disable_v2_behavior()
 
