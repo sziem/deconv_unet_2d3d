@@ -7,7 +7,7 @@ Created on Thu Jul 19 15:38:01 2018
 """
 
 # own imports
-from . import dataset_utils as dutils
+from .tools import dataset_utils as dutils
 #from decorators import deprecated
 
 import json

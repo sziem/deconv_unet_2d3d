@@ -1,1 +1,2 @@
-from . import tfdata_dataset_handlers, dataset_utils, generate_dataset_specs
+from . import tfdata_dataset_handlers
+from .tools import dataset_utils, generate_dataset_specs
