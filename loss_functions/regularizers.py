@@ -6,7 +6,11 @@ Created on Wed Oct 11 14:14:21 2017
 @author: soenke
 """
 
-import tensorflow as tf
+#import tensorflow as tf
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+#tf.disable_v2_behavior()
+
 #import toolbox.toolbox as tb
 if __name__ == '__main__':
     from tools import derivatives as d
@@ -22,7 +26,9 @@ else:
     #                        d1z_central_shift                        
 from warnings import warn
 
-# %% intesity penalty
+#__all__ = ['l2_reg', 'total_variation', 'goods_roughness']
+
+# %% intensity penalty
 
 def l2_reg(im):
     # ready for 3D!
