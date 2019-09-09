@@ -9,14 +9,17 @@ Created on Wed Oct 11 14:14:21 2017
 import tensorflow as tf
 #import toolbox.toolbox as tb
 if __name__ == '__main__':
-    from derivatives import d1x, d1y, d1z, d1x_central_conv, d1y_central_conv,\
-                            d1z_central_conv, d1x_central_shift, \
-                            d1y_central_shift, d1z_central_shift
+    from tools import derivatives as d
+    #import d1x, d1y, d1z, d1x_central_conv, \
+    #                        d1y_central_conv, d1z_central_conv, \
+    #                        d1x_central_shift, d1y_central_shift, \
+    #                        d1z_central_shift
 else:
-    from .derivatives import d1x, d1y, d1z, d1x_central_conv,d1y_central_conv,\
-                             d1z_central_conv, d1x_central_shift, \
-                             d1y_central_shift, d1z_central_shift
-                        
+    from .tools import derivatives as d
+    #import d1x, d1y, d1z, d1x_central_conv, \
+    #                        d1y_central_conv, d1z_central_conv, \
+    #                        d1x_central_shift, d1y_central_shift, \
+    #                        d1z_central_shift                        
 from warnings import warn
 
 # %% intesity penalty
@@ -158,9 +161,9 @@ def total_variation_iso_conv(im, eps=1e2, step_sizes=(1,1,1)):
      significant differences between adjacent pixels."
     -> TODO: what is quantization level ??
     """    
-    grad_z = d1z_central_conv(im, step_sizes[0])[:, 1:-1, 1:-1]
-    grad_y = d1y_central_conv(im, step_sizes[1])[1:-1, :, 1:-1]
-    grad_x = d1x_central_conv(im, step_sizes[2])[1:-1, 1:-1, :]
+    grad_z = d.d1z_central_conv(im, step_sizes[0])[:, 1:-1, 1:-1]
+    grad_y = d.d1y_central_conv(im, step_sizes[1])[1:-1, :, 1:-1]
+    grad_x = d.d1x_central_conv(im, step_sizes[2])[1:-1, 1:-1, :]
     
     # l2 norm of gradients
     return tf.reduce_sum(tf.sqrt(grad_z**2 + grad_y**2 + grad_x**2 + eps**2))
@@ -410,9 +413,9 @@ def goods_roughness_conv(im, eps=0.1, step_sizes=(1,1,1)):
     
     |grad(f)|^2 means scalar product with cc.
     """     
-    grad_z = d1z_central_conv(im, step_sizes[0])[:, 1:-1, 1:-1]
-    grad_y = d1y_central_conv(im, step_sizes[1])[1:-1, :, 1:-1]
-    grad_x = d1x_central_conv(im, step_sizes[2])[1:-1, 1:-1, :]
+    grad_z = d.d1z_central_conv(im, step_sizes[0])[:, 1:-1, 1:-1]
+    grad_y = d.d1y_central_conv(im, step_sizes[1])[1:-1, :, 1:-1]
+    grad_x = d.d1x_central_conv(im, step_sizes[2])[1:-1, 1:-1, :]
      
     # note that eps is not squared and serves a different function
     # as compared to tv

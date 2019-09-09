@@ -6,7 +6,11 @@ Created on Thu Jan 25 18:08:24 2018
 @author: soenke
 """
 
-import tensorflow as tf
+#import tensorflow as tf
+# for tensorflow 1.14 use this to avoid warnings:
+import tensorflow.compat.v1 as tf
+#tf.disable_v2_behavior()
+
 #import numpy as np
 import importlib.util
 
