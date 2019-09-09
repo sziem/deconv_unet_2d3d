@@ -819,19 +819,23 @@ class NDNet(object):
         calculate losses on test set
         
         Args:
-            testing_dataset_handler (dataset_handler) : dataset_handler from 
-                dataset_handlers.tf_data_dataset_handlers that provides method 
-                to get x and y from test set.  DatasetHandlers provide a thin
-                layer around tf.data datasets.  If you have an existing tf.data
-                dataset, using BaseDatasetHandler is sufficient.  The module also
-                provides Handlers that can be initialized from numpy-arrays
-                or lists of files. 
+            testing_dataset_handler (dataset_handler) : a ndnet-compatible 
+                dataset_handler, which is really just a class based on a
+                tf.data dataset with standardized methods to manipulate them.
+                Compatible dataset handlers are those in 
+                dataset_handlers.tf_data_dataset_handlers. 
+                If you already have a way to create and initialize a 
+                tf.data dataset, you can create a ndnet-compatible dataset 
+                from it by using BaseDatasetHandler(existing_tf-dataset).
+                Otherwise, the tf_data_dataset_handlers module also provides 
+                Handlers that can be initialized from numpy-arrays or lists.
             ckpt (str) : path to checkpoint that will be loaded.  
                 load_step should not be included in ckpt, but should be provided 
                 separately.
             load_step ("previous" or int) : step that will be loaded from ckpt.
                 "previous" is converted to the last ckpt that was written
                 to the folder containing the ckpt.
+                Default: "previous"
 
             loss_fn (function) : Loss_fn must be a function taking two parameters
                 (labels, predictions) and return a loss-tensor.  Common losses can
@@ -852,7 +856,6 @@ class NDNet(object):
 
         Returns:
             total_loss : (= data_loss + data_reg_loss)
-                .
         """       
         
         is_training = False
