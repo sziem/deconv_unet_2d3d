@@ -1,11 +1,11 @@
 import numpy as np
 #import tensorflow as tf
 if __name__ == '__main__':
-    import ops
-    import utils
+    from tools import ops
+    from tools import utils
 else:
-    from . import ops
-    from . import utils
+    from .tools import ops
+    from .tools import utils
 from warnings import warn
 
 # for tensorflow 1.14 use this to avoid warnings:
