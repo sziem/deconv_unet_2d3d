@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# author: sziem
 """
-Created on Wed May 23 14:17:11 2018
+Main file of this repo.
 
-@author: soenke
+Running this file, which will execute a test script, where two training steps
+are performed with a small model on a 3d image, then the model is run on that
+image and tested on that image (just to demontrate the interface and for 
+debugging). This test takes less than 2 minutes on my old laptop.
+
+If you get an error with mkl while running the test on cpu, switch to the 
+eigen builds or nightly builds of tensorflow.
+https://github.com/tensorflow/tensorflow/issues/31550
+
+Feel free to use and edit this repo.  I am happy, if you tell me about your 
+usage.
 """
 
 # this is from https://github.com/abseil/abseil-py/issues/102
