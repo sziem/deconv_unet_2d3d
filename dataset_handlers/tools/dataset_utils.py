@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 27 14:43:36 2018
-
-@author: photon
-"""
-
 import numpy as np
 import h5py
 import os

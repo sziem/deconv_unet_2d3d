@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 11 14:14:21 2017
-
-@author: soenke
-"""
-
 #import tensorflow as tf
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf

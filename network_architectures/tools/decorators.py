@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 13 15:56:40 2018
-
-@author: soenke
-"""
-
 import functools
 import inspect
 import warnings

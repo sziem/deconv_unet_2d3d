@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 24 00:15:21 2018
-
-@author: soenke
-"""
-
 from deconv_net import _run_on_image, _test
 from dataset_handlers.tfdata_dataset_handlers import (ListDatasetHandler, _dataset_mean_from_generator, _generator_from_h5)
 import time

@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 21 18:41:32 2018
-
-@author: soenke
-"""
 import os
 import json
 from warnings import warn

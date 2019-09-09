@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 19 15:38:01 2018
-
-@author: soenke
-"""
-
 # own imports
 from .tools import dataset_utils as dutils
 #from decorators import deprecated

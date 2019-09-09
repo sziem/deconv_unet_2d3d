@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 16 13:00:57 2018
-
-@author: Soenke
-"""
-
 import numpy as np
 import tensorflow as tf
 from warnings import warn

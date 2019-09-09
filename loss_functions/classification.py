@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 12 14:25:21 2018
-
-@author: photon
-"""
-
 #import tensorflow as tf
 # for tensorflow 1.14 use this to avoid warnings:
 import tensorflow.compat.v1 as tf
