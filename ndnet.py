@@ -37,10 +37,6 @@ import tools.training_utils as training_utils
 from tools.training_utils import experimental_model_params
 #import tools.decorators as decorators
 
-# NOTE:
-# if you get an error with mkl while running the test on cpu, 
-# switch to the eigen builds of tensorflow
-
 #IDEAS:
 ## build inference during init or using a build_network method
 # --> would probably be cleaner
@@ -108,7 +104,9 @@ from tools.training_utils import experimental_model_params
 ## specify data_format differently
 # more explicit 2D/3D would be to specify ndhwc etc.
 
-# TODO: better documentation for unetv3 arch string
+# better documentation for unetv3 arch string
+
+# clarify, whether data_format is for internal calculations or data input
 
 # posibly docment attributes here
 class NDNet(object):
